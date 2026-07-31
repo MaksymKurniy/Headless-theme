@@ -44,7 +44,8 @@ export default async function handleRequest(
   }
 
   responseHeaders.set('Content-Type', 'text/html');
-  responseHeaders.set('Content-Security-Policy', header);
+  // TODO: Remove -Report-Only before publishing to production. This is only for testing CSP in production.
+  responseHeaders.set('Content-Security-Policy-Report-Only', header);
 
   return new Response(body, {
     headers: responseHeaders,
