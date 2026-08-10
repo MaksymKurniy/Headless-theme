@@ -1,0 +1,62 @@
+[
+  {
+    "path": "/",
+    "group": null
+  },
+  {
+    "path": "/account",
+    "group": null
+  },
+  {
+    "path": "/account/addresses",
+    "group": "account"
+  },
+  {
+    "path": "/account/authorize",
+    "group": "account"
+  },
+  {
+    "path": "/account/login",
+    "group": "account"
+  },
+  {
+    "path": "/account/logout",
+    "group": "account"
+  },
+  {
+    "path": "/account/orders",
+    "group": "account"
+  },
+  {
+    "path": "/account/profile",
+    "group": "account"
+  },
+  {
+    "path": "/basex-preview",
+    "group": null
+  },
+  {
+    "path": "/blogs",
+    "group": null
+  },
+  {
+    "path": "/cart",
+    "group": null
+  },
+  {
+    "path": "/collections",
+    "group": null
+  },
+  {
+    "path": "/collections/all",
+    "group": "collections"
+  },
+  {
+    "path": "/policies",
+    "group": null
+  },
+  {
+    "path": "/search",
+    "group": null
+  }
+]

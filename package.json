@@ -5,15 +5,19 @@
   "version": "2026.4.5",
   "type": "module",
   "scripts": {
+    "prebuild": "npm run pages:manifest",
     "build": "shopify hydrogen build --codegen",
+    "predev": "npm run pages:manifest",
     "dev": "shopify hydrogen dev --codegen",
     "preview": "shopify hydrogen preview --build",
+    "pages:manifest": "node scripts/generate-pages-manifest.mjs",
     "lint": "eslint --no-error-on-unmatched-pattern .",
     "typecheck": "react-router typegen && tsc --noEmit",
     "codegen": "shopify hydrogen codegen && react-router typegen"
   },
   "prettier": "@shopify/prettier-config",
   "dependencies": {
+    "@basexedit/theme-sdk": "file:../BaseXEdit/sdk",
     "@shopify/hydrogen": "2026.4.4",
     "graphql": "^16.10.0",
     "graphql-tag": "^2.12.6",

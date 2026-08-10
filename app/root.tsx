@@ -10,6 +10,7 @@ import {
   ScrollRestoration,
   useRouteLoaderData,
 } from 'react-router';
+import {DesignModeLayer} from '@basexedit/theme-sdk';
 import type {Route} from './+types/root';
 import favicon from '~/assets/favicon.svg';
 import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
@@ -168,8 +169,18 @@ export function Layout({children}: {children?: React.ReactNode}) {
 export default function App() {
   const data = useRouteLoaderData<RootLoader>('root');
 
+  // Mounted once here (not per-page) so the selection overlay works on
+  // whichever route is currently rendered — home, a product, a collection,
+  // the pilot /basex-preview route, all of it — without every route needing
+  // to know about it. Pages with nothing tagged `[data-basex-id]` just get a
+  // no-op. Only ever active when the page was loaded with ?basex_design=1.
   if (!data) {
-    return <Outlet />;
+    return (
+      <>
+        <Outlet />
+        <DesignModeLayer />
+      </>
+    );
   }
 
   return (
@@ -181,6 +192,7 @@ export default function App() {
       <PageLayout {...data}>
         <Outlet />
       </PageLayout>
+      <DesignModeLayer />
     </Analytics.Provider>
   );
 }

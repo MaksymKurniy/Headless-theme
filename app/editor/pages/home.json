@@ -1,0 +1,15 @@
+{
+  "pageId": "home",
+  "nodes": [
+    {
+      "id": "hero-1",
+      "type": "hero",
+      "props": {
+        "heading": "New season, new looks",
+        "subheading": "Explore the latest arrivals before everyone else.",
+        "ctaLabel": "Shop now",
+        "ctaUrl": "/collections/all"
+      }
+    }
+  ]
+}
