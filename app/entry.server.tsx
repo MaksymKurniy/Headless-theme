@@ -6,6 +6,7 @@ import {
   type HydrogenRouterContextProvider,
 } from '@shopify/hydrogen';
 import type {EntryContext} from 'react-router';
+import {BASEX_EDITOR_ORIGINS} from '~/editor/basex.config';
 
 export default async function handleRequest(
   request: Request,
@@ -19,6 +20,14 @@ export default async function handleRequest(
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
+    // Hydrogen defaults `frame-ancestors` to 'none', which is the right
+    // default for a storefront and fatal for a visual editor: the moment the
+    // header below stops being -Report-Only, the browser refuses to render
+    // this page inside BaseXEdit's iframe and the editor shows a blank frame
+    // with no error anyone can act on. Naming the editor's origins here is
+    // what keeps that from happening — and it stays a closed list, so this is
+    // not a licence for anyone else to frame the storefront.
+    frameAncestors: ["'self'", ...BASEX_EDITOR_ORIGINS],
   });
 
   const body = await renderToReadableStream(

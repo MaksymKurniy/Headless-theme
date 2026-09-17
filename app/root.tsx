@@ -8,9 +8,11 @@ import {
   Meta,
   Scripts,
   ScrollRestoration,
+  useLocation,
   useRouteLoaderData,
 } from 'react-router';
 import {DesignModeLayer} from '@basexedit/theme-sdk';
+import {BASEX_EDITOR_ORIGINS} from '~/editor/basex.config';
 import type {Route} from './+types/root';
 import favicon from '~/assets/favicon.svg';
 import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
@@ -174,11 +176,26 @@ export default function App() {
   // the pilot /basex-preview route, all of it — without every route needing
   // to know about it. Pages with nothing tagged `[data-basex-id]` just get a
   // no-op. Only ever active when the page was loaded with ?basex_design=1.
+  //
+  // `path` comes from the router rather than from `window.location` on
+  // purpose: a link click in a Hydrogen storefront is a client-side route
+  // swap, which never reloads the document and so would never be noticed by
+  // anything reading `location` once. Feeding the router's value in is what
+  // lets the SDK post `navigated` and stop the editor from carrying on
+  // editing the page the preview used to be on.
+  const {pathname, search} = useLocation();
+  const designMode = (
+    <DesignModeLayer
+      allowedOrigins={BASEX_EDITOR_ORIGINS}
+      path={`${pathname}${search}`}
+    />
+  );
+
   if (!data) {
     return (
       <>
         <Outlet />
-        <DesignModeLayer />
+        {designMode}
       </>
     );
   }
@@ -192,7 +209,7 @@ export default function App() {
       <PageLayout {...data}>
         <Outlet />
       </PageLayout>
-      <DesignModeLayer />
+      {designMode}
     </Analytics.Provider>
   );
 }

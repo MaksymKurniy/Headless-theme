@@ -1,6 +1,7 @@
 import type {Route} from './+types/basex-preview';
 import {SectionRenderer, isDesignMode, useThemeBridge, type BasexTree} from '@basexedit/theme-sdk';
 import {sectionsRegistry} from '~/editor/sections.config';
+import {BASEX_EDITOR_ORIGINS} from '~/editor/basex.config';
 import homeConfig from '~/editor/pages/home.json';
 
 // Standalone pilot route for wiring up @basexedit/theme-sdk: no Header/Footer/
@@ -25,6 +26,7 @@ export default function BasexPreview({loaderData}: Route.ComponentProps) {
   const {tree, resolved} = useThemeBridge({
     registry: sectionsRegistry,
     initialTree: homeConfig as BasexTree,
+    allowedOrigins: BASEX_EDITOR_ORIGINS,
     designMode: loaderData.designMode,
   });
 
