@@ -10,6 +10,24 @@
         "ctaLabel": "Shop now",
         "ctaUrl": "/collections/all"
       }
+    },
+    {
+      "id": "featured-collection-1",
+      "type": "featured-collection",
+      "props": {
+        "heading": "Home page picks",
+        "collection": "frontpage",
+        "productsCount": 4
+      }
+    },
+    {
+      "id": "featured-collection-2",
+      "type": "featured-collection",
+      "props": {
+        "heading": "On sale",
+        "collection": "sale",
+        "productsCount": 4
+      }
     }
   ]
 }
