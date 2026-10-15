@@ -9,7 +9,19 @@
         "subheading": "Explore the latest arrivals before everyone else.",
         "ctaLabel": "Shop now",
         "ctaUrl": "/collections/all"
-      }
+      },
+      "children": [
+        {"id": "badge-1", "type": "_badge", "props": {"text": "New"}},
+        {
+          "id": "group-1",
+          "type": "group",
+          "props": {},
+          "children": [
+            {"id": "text-1", "type": "text", "props": {"text": "Free shipping over $50"}},
+            {"id": "button-1", "type": "button", "props": {"label": "Browse", "url": "/collections/all"}}
+          ]
+        }
+      ]
     },
     {
       "id": "featured-collection-1",

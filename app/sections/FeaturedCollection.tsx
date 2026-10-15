@@ -43,7 +43,7 @@ export const loader: SectionLoader<
   });
 };
 
-export function FeaturedCollection({
+export default function FeaturedCollection({
   heading,
   collection: handle,
   loaderData,

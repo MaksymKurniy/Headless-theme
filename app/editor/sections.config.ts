@@ -1,24 +1,16 @@
-import type {Registry} from '@basexedit/theme-sdk';
-import {
-  FeaturedCollection,
-  loader as featuredCollectionLoader,
-  schema as featuredCollectionSchema,
-} from '~/sections/FeaturedCollection';
-import {Hero, schema as heroSchema} from '~/sections/Hero';
+import {createRegistry, type RegistryModule} from '@basexedit/theme-sdk';
 
-// Registry key -> component + schema (+ loader, for a section that needs store
-// data). Sections and blocks are registered the same way here; a "block" is
-// just a node type another node's schema is allowed to nest as a child (see
-// Hero.schema's `blocks`, once it has any).
+// The folder decides what a file is: `sections/*.tsx` are sections, `blocks/*.tsx`
+// are blocks. The file name is the registry key (Hero.tsx -> "hero",
+// FeaturedCollection.tsx -> "featured-collection") — the string a saved page
+// stores as `node.type`, so renaming a file renames the type. A block whose
+// file starts with `_` is private: a schema's `blocks` accepts it only when it
+// names it explicitly (`@theme` covers public blocks only).
 //
-// A section's `loader` is run by loadSectionData() in the route that renders
-// the page, once per instance of the section, with that instance's settings —
-// so a new data-driven section is one entry here, never a route change.
-export const sectionsRegistry: Registry = {
-  hero: {component: Hero, schema: heroSchema},
-  'featured-collection': {
-    component: FeaturedCollection,
-    schema: featuredCollectionSchema,
-    loader: featuredCollectionLoader,
-  },
-};
+// Each file exports its component as default, `schema`, and optionally `loader`.
+// Globs are relative on purpose: Vite resolves `~` through tsconfig paths, not
+// through its own alias table, which `import.meta.glob` uses.
+export const sectionsRegistry = createRegistry({
+  sections: import.meta.glob<RegistryModule>('../sections/*.tsx', {eager: true}),
+  blocks: import.meta.glob<RegistryModule>('../blocks/*.tsx', {eager: true}),
+});

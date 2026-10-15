@@ -10,7 +10,7 @@ export interface HeroProps {
   children?: ReactNode;
 }
 
-export function Hero({heading, subheading, image, ctaLabel, ctaUrl, children}: HeroProps) {
+export default function Hero({heading, subheading, image, ctaLabel, ctaUrl, children}: HeroProps) {
   return (
     <section className="hero">
       {image ? <img src={image} alt="" className="hero__image" /> : null}
@@ -37,6 +37,7 @@ export const schema = createSchema({
     {type: 'text', id: 'ctaLabel', label: 'Button label', default: 'Shop now'},
     {type: 'url', id: 'ctaUrl', label: 'Button link'},
   ],
+  blocks: [{type: '@theme'}, {type: '_badge', limit: 1}],
   presets: [
     {
       name: 'Default hero',
