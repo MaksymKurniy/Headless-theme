@@ -17,7 +17,7 @@
   },
   "prettier": "@shopify/prettier-config",
   "dependencies": {
-    "@basexedit/theme-sdk": "file:../BaseXEdit/sdk",
+    "@basexedit/theme-sdk": "file:../BaseXEdit-editor/sdk",
     "@shopify/hydrogen": "2026.4.4",
     "graphql": "^16.10.0",
     "graphql-tag": "^2.12.6",
