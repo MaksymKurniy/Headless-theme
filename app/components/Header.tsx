@@ -6,6 +6,7 @@ import {
   useOptimisticCart,
 } from '@shopify/hydrogen';
 import type {HeaderQuery, CartApiQueryFragment} from 'storefrontapi.generated';
+import {useThemeSetting} from '@basexedit/theme-sdk';
 import {useAside} from '~/components/Aside';
 
 interface HeaderProps {
@@ -24,10 +25,17 @@ export function Header({
   publicStoreDomain,
 }: HeaderProps) {
   const {shop, menu} = header;
+  // Picked in the editor under Theme settings > Logo; the shop name stands in
+  // until one is chosen.
+  const logo = useThemeSetting<string>('logo');
   return (
     <header className="header">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
+        {logo ? (
+          <img className="header-logo" src={logo} alt={shop.name} />
+        ) : (
+          <strong>{shop.name}</strong>
+        )}
       </NavLink>
       <HeaderMenu
         menu={menu}

@@ -11,8 +11,15 @@ import {
   useLocation,
   useRouteLoaderData,
 } from 'react-router';
-import {DesignModeLayer} from '@basexedit/theme-sdk';
+import {
+  DesignModeLayer,
+  ThemeSettingsProvider,
+  isDesignMode,
+  readThemeSettingsFile,
+} from '@basexedit/theme-sdk';
 import {BASEX_EDITOR_ORIGINS} from '~/editor/basex.config';
+import savedThemeSettings from '~/editor/theme-settings.json';
+import {themeSettingsSchema} from '~/editor/theme-settings.schema';
 import type {Route} from './+types/root';
 import favicon from '~/assets/favicon.svg';
 import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
@@ -22,6 +29,10 @@ import tailwindCss from './styles/tailwind.css?url';
 import {PageLayout} from './components/PageLayout';
 
 export type RootLoader = typeof loader;
+
+// What the user picked under Theme settings, read from the committed file once
+// at module load. Missing or invalid values fall back to the schema's defaults.
+const themeSettingsValues = readThemeSettingsFile(savedThemeSettings);
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
@@ -81,6 +92,9 @@ export async function loader(args: Route.LoaderArgs) {
   return {
     ...deferredData,
     ...criticalData,
+    // Decided on the server from the URL, so the settings provider and the
+    // server render agree on whether this is an editor preview.
+    designMode: isDesignMode(new URL(args.request.url).search),
     publicStoreDomain: env.PUBLIC_STORE_DOMAIN,
     shop: getShopAnalytics({
       storefront,
@@ -191,16 +205,29 @@ export default function App() {
     />
   );
 
+  // Wraps the whole app, so the palette and typography apply on every page —
+  // the ones with a section tree and the ones without.
+  const withThemeSettings = (children: React.ReactNode) => (
+    <ThemeSettingsProvider
+      schema={themeSettingsSchema}
+      values={themeSettingsValues}
+      allowedOrigins={BASEX_EDITOR_ORIGINS}
+      designMode={data?.designMode ?? false}
+    >
+      {children}
+    </ThemeSettingsProvider>
+  );
+
   if (!data) {
-    return (
+    return withThemeSettings(
       <>
         <Outlet />
         {designMode}
-      </>
+      </>,
     );
   }
 
-  return (
+  return withThemeSettings(
     <Analytics.Provider
       cart={data.cart}
       shop={data.shop}
@@ -210,7 +237,7 @@ export default function App() {
         <Outlet />
       </PageLayout>
       {designMode}
-    </Analytics.Provider>
+    </Analytics.Provider>,
   );
 }
 
