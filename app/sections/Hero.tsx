@@ -39,7 +39,16 @@ export default function Hero({
       {image ? <img src={image} alt="" className="hero__image" /> : null}
       <div className="hero__content">
         <h1>{heading}</h1>
-        {subheading ? <p className="hero__subheading">{subheading}</p> : null}
+        {subheading ? (
+          // A `richtext` setting stores HTML (paragraphs, lists, bold, links),
+          // written in the editor's rich text field — so it is markup to
+          // render, not text to print. Only people who can edit this store's
+          // pages can put anything in it.
+          <div
+            className="hero__subheading"
+            dangerouslySetInnerHTML={{__html: subheading}}
+          />
+        ) : null}
         {ctaLabel && ctaUrl ? (
           <a href={ctaUrl} className="hero__cta">
             {ctaLabel}
