@@ -24,6 +24,58 @@
       ]
     },
     {
+      "id": "settings-showcase-1",
+      "type": "settings-showcase",
+      "props": {
+        "heading": "Settings <em>showcase</em>",
+        "background": "linear-gradient(135deg, #eef2ff 0%, #ffffff 100%)",
+        "paddings": {"top": 24, "right": 16, "bottom": 24, "left": 16}
+      },
+      "children": [
+        {
+          "id": "settings-text-1",
+          "type": "settings-text",
+          "props": {
+            "title": "Text and values",
+            "notes": "Several\nlines of notes",
+            "body": "<p>A <strong>rich</strong> paragraph with a <a href=\"/collections/all\">link</a>.</p><ul><li><p>First point</p></li><li><p>Second point</p></li></ul>",
+            "tagline": "Free <strong>shipping</strong> over $50",
+            "embed": "<mark>raw HTML</mark>",
+            "link": "/collections/all",
+            "count": 3,
+            "opacity": 100,
+            "emphasis": false,
+            "tone": "calm",
+            "accent": "#2563eb",
+            "align": "left"
+          }
+        },
+        {
+          "id": "settings-layout-1",
+          "type": "settings-layout",
+          "props": {
+            "position": "center center",
+            "align": "center",
+            "width": {"mode": "full"},
+            "height": {"mode": "custom", "value": 160, "unit": "px"},
+            "paddings": {"top": 16, "right": 16, "bottom": 16, "left": 16},
+            "background": "linear-gradient(135deg, #fde68a 0%, #fca5a5 100%)",
+            "palette": {"text": "#111827", "surface": "#ffffff", "accent": "#2563eb"}
+          }
+        },
+        {
+          "id": "settings-store-1",
+          "type": "settings-store",
+          "props": {
+            "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "collection": "frontpage",
+            "tags": ["new", "sale"],
+            "numbers": [1, 2, 3]
+          }
+        }
+      ]
+    },
+    {
       "id": "featured-collection-1",
       "type": "featured-collection",
       "props": {
