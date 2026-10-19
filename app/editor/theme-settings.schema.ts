@@ -66,6 +66,7 @@ export const themeSettingsSchema = createThemeSettingsSchema({
     {
       id: 'typography',
       name: 'Typography',
+      collapsible: true,
       settings: [
         {
           type: 'select',
@@ -98,6 +99,7 @@ export const themeSettingsSchema = createThemeSettingsSchema({
     {
       id: 'layout',
       name: 'Layout',
+      collapsible: true,
       settings: [
         {
           type: 'range',

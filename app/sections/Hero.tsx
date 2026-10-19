@@ -1,4 +1,8 @@
-import {createSchema} from '@basexedit/theme-sdk';
+import {
+  createSchema,
+  type PaddingsValue,
+  type TextAlignment,
+} from '@basexedit/theme-sdk';
 import type {ReactNode} from 'react';
 
 export interface HeroProps {
@@ -7,12 +11,31 @@ export interface HeroProps {
   image?: string;
   ctaLabel?: string;
   ctaUrl?: string;
+  align?: TextAlignment;
+  padding?: PaddingsValue;
   children?: ReactNode;
 }
 
-export default function Hero({heading, subheading, image, ctaLabel, ctaUrl, children}: HeroProps) {
+export default function Hero({
+  heading,
+  subheading,
+  image,
+  ctaLabel,
+  ctaUrl,
+  align,
+  padding,
+  children,
+}: HeroProps) {
   return (
-    <section className="hero">
+    <section
+      className="hero"
+      style={{
+        textAlign: align,
+        padding: padding
+          ? `${padding.top}px ${padding.right}px ${padding.bottom}px ${padding.left}px`
+          : undefined,
+      }}
+    >
       {image ? <img src={image} alt="" className="hero__image" /> : null}
       <div className="hero__content">
         <h1>{heading}</h1>
@@ -36,6 +59,9 @@ export const schema = createSchema({
     {type: 'image_picker', id: 'image', label: 'Background image'},
     {type: 'text', id: 'ctaLabel', label: 'Button label', default: 'Shop now'},
     {type: 'url', id: 'ctaUrl', label: 'Button link'},
+    {type: 'header', content: 'Layout', collapsible: true, collapsed: true},
+    {type: 'text_alignment', id: 'align', label: 'Text alignment', default: 'left'},
+    {type: 'paddings', id: 'padding', label: 'Padding'},
   ],
   blocks: [{type: '@theme'}, {type: '_badge', limit: 1}],
   presets: [
