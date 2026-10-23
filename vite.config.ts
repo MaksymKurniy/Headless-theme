@@ -4,9 +4,18 @@ import {hydrogen} from '@shopify/hydrogen/vite';
 import {oxygen} from '@shopify/mini-oxygen/vite';
 import {reactRouter} from '@react-router/dev/vite';
 import tailwindcss from '@tailwindcss/vite';
+import {basexFiles} from '@basexedit/theme-sdk/vite';
+import {BASEX_EDITOR_ORIGINS} from './app/editor/basex.config';
 
 export default defineConfig({
-  plugins: [tailwindcss(), hydrogen(), oxygen(), reactRouter()],
+  plugins: [
+    // Lets the BaseXEdit editor save app/editor/*.json while `vite dev` runs; absent from builds.
+    basexFiles({allowedOrigins: BASEX_EDITOR_ORIGINS}),
+    tailwindcss(),
+    hydrogen(),
+    oxygen(),
+    reactRouter(),
+  ],
   resolve: {
     alias: {
       // Vite's native tsconfig path resolver does not cover JavaScript
