@@ -1,35 +1,19 @@
 {
+  "schemaVersion": 1,
   "pageId": "home",
   "nodes": [
-    {
-      "id": "hero-1",
-      "type": "hero",
-      "props": {
-        "heading": "New season, new looks",
-        "subheading": "Explore the latest arrivals before everyone else.",
-        "ctaLabel": "Shop now",
-        "ctaUrl": "/collections/all"
-      },
-      "children": [
-        {"id": "badge-1", "type": "_badge", "props": {"text": "New"}},
-        {
-          "id": "group-1",
-          "type": "group",
-          "props": {},
-          "children": [
-            {"id": "text-1", "type": "text", "props": {"text": "Free shipping over $50"}},
-            {"id": "button-1", "type": "button", "props": {"label": "Browse", "url": "/collections/all"}}
-          ]
-        }
-      ]
-    },
     {
       "id": "settings-showcase-1",
       "type": "settings-showcase",
       "props": {
         "heading": "Settings <em>showcase</em>",
         "background": "linear-gradient(135deg, #eef2ff 0%, #ffffff 100%)",
-        "paddings": {"top": 24, "right": 16, "bottom": 24, "left": 16}
+        "paddings": {
+          "top": 24,
+          "right": 16,
+          "bottom": 24,
+          "left": 16
+        }
       },
       "children": [
         {
@@ -56,11 +40,26 @@
           "props": {
             "position": "center center",
             "align": "center",
-            "width": {"mode": "full"},
-            "height": {"mode": "custom", "value": 160, "unit": "px"},
-            "paddings": {"top": 16, "right": 16, "bottom": 16, "left": 16},
+            "width": {
+              "mode": "full"
+            },
+            "height": {
+              "mode": "custom",
+              "value": 160,
+              "unit": "px"
+            },
+            "paddings": {
+              "top": 16,
+              "right": 16,
+              "bottom": 16,
+              "left": 16
+            },
             "background": "linear-gradient(135deg, #fde68a 0%, #fca5a5 100%)",
-            "palette": {"text": "#111827", "surface": "#ffffff", "accent": "#2563eb"}
+            "palette": {
+              "text": "#111827",
+              "surface": "#ffffff",
+              "accent": "#2563eb"
+            }
           }
         },
         {
@@ -69,9 +68,65 @@
           "props": {
             "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
             "collection": "frontpage",
-            "tags": ["new", "sale"],
-            "numbers": [1, 2, 3]
+            "tags": [
+              "new",
+              "sale"
+            ],
+            "numbers": [
+              1,
+              2,
+              3
+            ]
           }
+        }
+      ]
+    },
+    {
+      "id": "hero-1",
+      "type": "hero",
+      "props": {
+        "heading": "New season, new looks",
+        "subheading": "Explore the latest arrivals before everyone else.",
+        "ctaLabel": "Shop now",
+        "ctaUrl": "/collections/all",
+        "padding": {
+          "top": 0,
+          "right": 16,
+          "bottom": 0,
+          "left": 16
+        },
+        "image": "https://cdn.shopify.com/s/files/1/0952/3979/9048/files/vta-vanquish-bg.jpg?v=1792674927",
+        "align": "center"
+      },
+      "children": [
+        {
+          "id": "badge-1",
+          "type": "_badge",
+          "props": {
+            "text": "New"
+          }
+        },
+        {
+          "id": "group-1",
+          "type": "group",
+          "props": {},
+          "children": [
+            {
+              "id": "text-1",
+              "type": "text",
+              "props": {
+                "text": "Free shipping over $50"
+              }
+            },
+            {
+              "id": "button-1",
+              "type": "button",
+              "props": {
+                "label": "Browse",
+                "url": "/collections/all"
+              }
+            }
+          ]
         }
       ]
     },

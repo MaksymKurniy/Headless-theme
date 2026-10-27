@@ -87,7 +87,7 @@ export const schema = createSchema({
     {type: 'image_picker', id: 'image', label: 'Image'},
     {type: 'video', id: 'video', label: 'Video file'},
     {type: 'video_url', id: 'videoUrl', label: 'Video link (YouTube or Vimeo)'},
-    {type: 'header', content: 'Store', collapsible: true, collapsed: true},
+    {type: 'header', content: 'Store', collapsible: true},
     {type: 'collection', id: 'collection', label: 'Collection'},
     {type: 'product', id: 'product', label: 'Product'},
     {type: 'blog', id: 'blog', label: 'Blog'},
@@ -100,7 +100,7 @@ export const schema = createSchema({
       label: 'Author',
       metaobjectType: 'author',
     },
-    {type: 'header', content: 'Lists', collapsible: true, collapsed: true},
+    {type: 'header', content: 'Lists', collapsible: true},
     {
       type: 'array',
       id: 'featured',

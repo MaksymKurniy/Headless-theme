@@ -18,7 +18,7 @@ export const schema = createSchema({
   name: 'Button',
   settings: [
     {type: 'text', id: 'label', label: 'Label', default: 'Shop now'},
-    {type: 'url', id: 'url', label: 'Link'},
+    {type: 'link', id: 'url', label: 'Link'},
   ],
   presets: [{name: 'Button'}],
 });

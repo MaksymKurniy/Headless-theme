@@ -778,3 +778,52 @@ button.reset:hover:not(:has(> *)) {
   margin: 0;
   overflow-wrap: anywhere;
 }
+
+/*
+* --------------------------------------------------
+* Group block
+* Direction, alignment, gap and padding come from the custom properties the
+* block sets inline (blocks/Group.tsx); the rest of its look is inline.
+* `--group-m-*` exist only on a group with its own mobile layout or padding,
+* and only the matching modifier below reads them.
+* --------------------------------------------------
+*/
+.block-group {
+  align-items: var(--group-align);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: var(--group-direction);
+  gap: var(--group-gap);
+  justify-content: var(--group-justify);
+  padding: var(--group-padding);
+  position: relative;
+}
+
+@media (max-width: 45em) {
+  .block-group--mobile-layout {
+    align-items: var(--group-m-align);
+    flex-direction: var(--group-m-direction);
+    gap: var(--group-m-gap);
+    justify-content: var(--group-m-justify);
+  }
+
+  .block-group--mobile-padding {
+    padding: var(--group-m-padding);
+  }
+}
+
+/* The link covers the whole group; what is inside that is clickable itself
+   stays above it. */
+.block-group__link {
+  inset: 0;
+  position: absolute;
+}
+
+.block-group--linked a:not(.block-group__link),
+.block-group--linked button,
+.block-group--linked input,
+.block-group--linked select,
+.block-group--linked textarea {
+  position: relative;
+  z-index: 1;
+}

@@ -6,7 +6,7 @@ import {
   type TextAlignment,
 } from '@basexedit/theme-sdk';
 import {ShowcaseValues} from '~/components/ShowcaseValues';
-import {cssOf, positionToFlex} from '~/lib/showcase';
+import {cssOf, positionToFlex} from '~/lib/layout';
 
 // The composite setting types: position, paddings, size, a background and a
 // palette. The box below uses each one the way a theme would — through the CSS

@@ -74,8 +74,8 @@ export const schema = createSchema({
     {type: 'richtext', id: 'body', label: 'Body (rich text)'},
     {type: 'inline_richtext', id: 'tagline', label: 'Tagline (one line)'},
     {type: 'html', id: 'embed', label: 'HTML embed'},
-    {type: 'url', id: 'link', label: 'Link'},
-    {type: 'header', content: 'Values', collapsible: true, collapsed: true},
+    {type: 'link', id: 'link', label: 'Link'},
+    {type: 'header', content: 'Values', collapsible: true},
     {type: 'number', id: 'count', label: 'Count', min: 0, max: 99, default: 3},
     {
       type: 'range',

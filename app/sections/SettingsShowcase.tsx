@@ -1,6 +1,6 @@
 import {createSchema, type PaddingsValue} from '@basexedit/theme-sdk';
 import type {ReactNode} from 'react';
-import {cssOf} from '~/lib/showcase';
+import {cssOf} from '~/lib/layout';
 
 // A section for trying every setting type: its own few settings, and room for
 // the three Settings* blocks, which between them use all the others. Put it on

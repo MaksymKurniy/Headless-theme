@@ -5,9 +5,8 @@ import {
   type Position,
 } from '@basexedit/theme-sdk';
 
-// Helpers for the Settings showcase blocks (app/blocks/Settings*.tsx), which
-// exist to try every setting type the editor offers and show what each one
-// stores.
+// Helpers for blocks that turn layout settings (`position`, `paddings`, `size`)
+// into CSS: the Group block and the Settings showcase blocks.
 
 /**
  * The CSS a setting of `schema` produces for `value`: what a theme would put in
@@ -27,8 +26,15 @@ export function cssOf(
 
 const FLEX = {top: 'flex-start', left: 'flex-start', center: 'center', bottom: 'flex-end', right: 'flex-end'} as const;
 
-/** A `position` setting (`top left`, `center center`, …) as flexbox alignment. */
-export function positionToFlex(position: Position | undefined): {
+/**
+ * A `position` setting (`top left`, `center center`, …) as flexbox alignment.
+ * The position reads vertical-then-horizontal whatever the direction is, so in a
+ * `column` the two axes swap: the vertical part is the main axis.
+ */
+export function positionToFlex(
+  position: Position | undefined,
+  direction: 'row' | 'column' = 'row',
+): {
   alignItems: string;
   justifyContent: string;
 } {
@@ -36,5 +42,7 @@ export function positionToFlex(position: Position | undefined): {
     keyof typeof FLEX,
     keyof typeof FLEX,
   ];
-  return {alignItems: FLEX[vertical], justifyContent: FLEX[horizontal]};
+  return direction === 'row'
+    ? {alignItems: FLEX[vertical], justifyContent: FLEX[horizontal]}
+    : {alignItems: FLEX[horizontal], justifyContent: FLEX[vertical]};
 }
